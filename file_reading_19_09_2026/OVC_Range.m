@@ -1,0 +1,41 @@
+%% OVC VS RANGE
+clear all
+clc
+%for program 1
+f_name='New_01.txt';
+fid=fopen(f_name,'r');
+line=fgetl(fid);
+k=1;
+line=fgetl(fid);
+while ischar(line)
+    soc_ocv(k,:)=str2num(line);
+    k=k+1;
+    line=fgetl(fid);
+end
+fclose(fid);
+
+% for program 2
+f_name='SOC_RANGE.txt';
+fid=fopen(f_name,'r');
+line=fgetl(fid);
+k=1;
+line=fgetl(fid);
+while ischar(line)
+    SOC_RANGE(k,:)=str2num(line);
+    k=k+1;
+    line=fgetl(fid);
+end
+fclose(fid);
+
+% to plot graph
+%% Ploting
+figure(1)
+x=soc_ocv(:,2);
+y=SOC_RANGE(:,2);
+plot(x,y,'c','lineWidth',2);
+%for x,y,'c' is for colour & 'lineWidth',2 is for thickenss of line value in 2mm
+grid on
+grid minor
+title('OVC,RANGE');
+xlabel('OCV');
+ylabel('RANGE');
